@@ -10,9 +10,9 @@ todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterTodo);
 
 // Functions
-function addTodo(event) {
+function addTodo(e) {
     // Prevent form from submitting
-    event.preventDefault();
+    e.preventDefault();
     // Todo DIV
     const todoDiv = document.createElement('div');
     todoDiv.classList.add("todo");
@@ -40,7 +40,7 @@ function addTodo(event) {
 function deleteCheck(e) {
     const item = e.target;
     // DELETE TODO
-    if(item.classList[0] === 'trash-btn') {
+    if(item.classList[0] === "trash-btn") {
         const todo = item.parentElement;
         // Animation
         todo.classList.add("fall");
@@ -51,7 +51,7 @@ function deleteCheck(e) {
     // CHECK MARK
     if(item.classList[0] === "complete-btn"){
         const todo = item.parentElement;
-        todo.classList.toggle('completed');
+        todo.classList.toggle("completed");
     }
 }
 
@@ -61,13 +61,21 @@ function filterTodo(e) {
         switch(e.target.value) {
             case "all":
                 todo.style.display = "flex";
-                break;
+            break;
             case "completed":
             if (todo.classList.contains("completed")) {
                 todo.style.display = "flex";
             } else {
                 todo.style.display = "none";
             }
-      }
+            break;
+            case "uncompleted":
+            if(!todo.classList.contains("completed")) {
+                todo.style.display = "flex";
+            } else {
+                todo.style.display = "none";
+            }
+            break;
+         }       
     });
 }
